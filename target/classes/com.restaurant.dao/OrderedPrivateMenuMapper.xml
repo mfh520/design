@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.restaurant.dao.OrderedPrivateMenuMapper">
+
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+    <insert id="selectOrderedAsPrivate">
+        insert into
+        tbl_menu_order_private
+        (menu_id, account, use_time, type, number)
+        values
+        (#{menuId}, #{account}, #{useTime}, #{type}, #{number})
+    </insert>
+
+    <update id="removeOrderedPrivate">
+        update
+        tbl_menu_order_private
+        set delete_flag = 1
+        where menu_id = #{menuId}
+        and account  = #{account}
+        and tbl_menu_order_private.type  = #{type}
+        and use_time = #{useTime}
+    </update>
+
+    <select id="selectOrderedPrivateByCustomer" resultType="com.restaurant.entity.OrderedMenu">
+        select tbl_menu_order_private.id, menu_id, account, tbl_menu.name, tbl_menu_order_private.type, price, season,
+        order_time, use_time, number
+        from tbl_menu, tbl_menu_order_private
+        where tbl_menu_order_private.menu_id = tbl_menu.id
+        and account  = #{account}
+        and tbl_menu_order_private.type  = #{type}
+        and use_time = #{useTime}
+        and delete_flag != 1
+    </select>
+    
+    <select id="selectOrderedPrivateMenus" resultType="com.restaurant.entity.OrderedMenu">
+        select tbl_menu_order_private.id, menu_id, account, tbl_menu.name, tbl_menu_order_private.type, price, season,
+        order_time, use_time, number
+        from tbl_menu, tbl_menu_order_private
+        where tbl_menu_order_private.menu_id = tbl_menu.id
+        and tbl_menu_order_private.type  = #{type}
+        and use_time = #{useTime}
+        and delete_flag != 1
+        limit #{start}, #{end}
+    </select>
+
+</mapper>

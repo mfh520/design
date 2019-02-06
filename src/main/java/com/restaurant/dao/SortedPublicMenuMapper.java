@@ -1,0 +1,18 @@
+package com.restaurant.dao;
+
+import com.restaurant.entity.SortedMenu;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+public interface SortedPublicMenuMapper {
+
+	public void selectMenuAsPublic(int id);
+	public void removeMenuPublic(int id);
+	public List<SortedMenu> selectPublicMenus(@Param("start") int start, @Param("end") int end);
+	public List<SortedMenu> selectPublicMenuBySeason(@Param("season") String season, @Param("start") int start, @Param("end") int end);
+	public List<SortedMenu> selectPublicMenuByName(@Param("name") String name, @Param("start") int start, @Param("end") int end);
+	public List<SortedMenu> selectPublicMenuByType(@Param("type") String type, @Param("start") int start, @Param("end") int end);
+
+
+}

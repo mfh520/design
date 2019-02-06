@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.restaurant.dao.OrderedPublicMenuMapper">
+
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+    <insert id="selectOrderedAsPublic">
+        insert into
+        tbl_menu_order_public
+        (menu_id, account, use_time, type, number)
+        values
+        (#{menuId}, #{account}, #{useTime}, #{type}, #{number})
+    </insert>
+
+    <update id="removeOrderedPublic">
+        update
+        tbl_menu_order_public
+        set delete_flag = 1
+        where menu_id = #{menuId}
+        and account  = #{account}
+        and tbl_menu_order_public.type  = #{type}
+        and use_time = #{useTime}
+    </update>
+
+
+    <select id="selectOrderedPublicByCustomer" resultType="com.restaurant.entity.OrderedMenu">
+        select tbl_menu_order_public.id, menu_id, account, tbl_menu.name, tbl_menu_order_public.type, price, season,
+        order_time, use_time, number
+        from tbl_menu, tbl_menu_order_public
+        where tbl_menu_order_public.menu_id = tbl_menu.id
+        and account  = #{account}
+        and tbl_menu_order_public.type  = #{type}
+        and use_time = #{useTime}
+        and delete_flag != 1
+    </select>
+
+    <select id="selectOrderedPublicMenus" resultType="com.restaurant.entity.OrderedMenu">
+        select tbl_menu_order_public.id, menu_id, account, tbl_menu.name, tbl_menu_order_public.type, price, season,
+        order_time, use_time, number
+        from tbl_menu, tbl_menu_order_public
+        where tbl_menu_order_public.menu_id = tbl_menu.id
+        and tbl_menu_order_public.type  = #{type}
+        and use_time = #{useTime}
+        and delete_flag != 1
+        limit #{start}, #{end}
+    </select>
+
+    <select id="selectOrderedPublicMenuNumbers" resultType="com.restaurant.entity.OrderedMenu">
+        select tbl_menu.name, tbl_menu_order_public.type, price,season,
+        order_time, use_time, count(number) as number
+        from tbl_menu, tbl_menu_order_public
+        where tbl_menu_order_public.menu_id = tbl_menu.id
+        and tbl_menu_order_public.type  = #{type}
+        and use_time = #{useTime}
+        and delete_flag != 1
+        order by tbl_menu.name, tbl_menu_order_public.type, price, season, order_time, use_time
+        limit #{start}, #{end}
+    </select>
+
+</mapper>

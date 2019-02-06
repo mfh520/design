@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.restaurant.dao.MenuMapper">
+
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+    <insert id="insertMenu" parameterType="com.restaurant.entity.Menu">
+        insert into
+        tbl_menu(
+        name,
+        type,
+        price,
+        season)
+        values (
+        #{name},
+        #{type},
+        #{price},
+        #{season})
+    </insert>
+
+    <select id="checkDetail" parameterType="Integer" resultType="com.restaurant.entity.Menu">
+        select
+        id,
+        name,
+        type,
+        price,
+        season
+        from tbl_menu
+        where
+        id = #{id}
+    </select>
+
+    <update id="updateMenu" parameterType="com.restaurant.entity.Menu">
+        update
+        tbl_menu
+        set
+        name = #{name},
+        price = #{price},
+        type = #{type},
+        season = #{season}
+        where
+        id = #{id}
+    </update>
+
+    <update id="deleteMenu" parameterType="Integer">
+        update tbl_menu
+        set
+        delete_flag = 1
+        where
+        id = #{id}
+    </update>
+
+    <select id="selectMenu" resultType="com.restaurant.entity.Menu">
+        select
+        id,
+        name,
+        type,
+        price,
+        season
+        from tbl_menu
+        limit #{start}, #{end}
+    </select>
+
+    <select id="selectMenuByName" resultType="com.restaurant.entity.Menu">
+        <bind name="name" value="'%' + _parameter.name + '%'" />
+        select
+        id,
+        name,
+        type,
+        price,
+        season
+        from tbl_menu
+        where
+        name like #{name}
+        limit #{start}, #{end}
+    </select>
+
+    <select id="selectMenuByType" resultType="com.restaurant.entity.Menu">
+        <bind name="type" value="'%' + _parameter.type + '%'" />
+        select
+        id,
+        name,
+        type,
+        price,
+        season
+        from tbl_menu
+        where
+        type like #{type}
+        limit #{start}, #{end}
+    </select>
+
+
+    <select id="selectMenuBySeason" resultType="com.restaurant.entity.Menu">
+        <bind name="season" value="'%' + _parameter.season + '%'" />
+        select
+        id,
+        name,
+        type,
+        price,
+        season
+        from tbl_menu
+        where
+        season like #{season}
+        limit #{start}, #{end}
+    </select>
+
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.restaurant.dao.AccountMapper">
+
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+    <insert id="insertAccount" parameterType="com.restaurant.entity.Account">
+        insert into
+        tbl_account(
+        date,
+        name,
+        money,
+        paid_flag,
+        message)
+        values (
+        #{date},
+        #{name},
+        #{money},
+        #{paidFlag},
+        #{message})
+    </insert>
+
+    <update id="deleteAccount" parameterType="Integer">
+        update
+        tbl_account
+        set
+        delete_flag = 1
+        where
+        id = #{id}
+    </update>
+
+    <update id="updateAccount" parameterType="com.restaurant.entity.Account">
+        update
+        tbl_account
+        set
+        name = #{name},
+        message = #{message},
+        money = #{money},
+        paid_flag = #{paidFlag}
+        where
+        id = #{id}
+    </update>
+
+    <update id="accountPaid" parameterType="Integer">
+        update
+        tbl_account
+        set
+        paid_flag = 1
+        where
+        id = #{id}
+    </update>
+    
+    <select id="selectAccountByDate" resultType="com.restaurant.entity.Account">
+        select id, date, name, message, money, paid_flag
+        from tbl_account
+        where
+        delete_flag != 1
+        limit #{start}, #{end}
+    </select>
+
+
+
+</mapper>
