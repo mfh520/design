@@ -71,6 +71,7 @@
         <mapper resource="com.restaurant.dao/OrderedPublicMenuMapper.xml"/>
         <mapper resource="com.restaurant.dao/ExpandMapper.xml"/>
         <mapper resource="com.restaurant.dao/AccountMapper.xml"/>
+        <mapper resource="com.restaurant.dao/FoodMapper.xml"/>
 
 
     </mappers>

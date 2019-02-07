@@ -1,3 +1,5 @@
+package daoTest;
+
 import com.alibaba.fastjson.JSON;
 import com.restaurant.dao.SortedPublicMenuMapper;
 import com.restaurant.dao.impl.SortedPublicMenuMapperImpl;

@@ -1,33 +1,37 @@
 package com.restaurant.entity;
 
 public class Food {
-    private String id;
+    private int id;
     private String name;
     private String date;
-    private String security;
+    private int security;
     private String foodType;
-    private String num;
-    private String mark;
+    private int number;
+    private String measure;
+    private int usedFlag;
 
-    public Food(String id) {
+    public Food() {
+    }
+
+    public Food(int id, String name, String date, int security, String foodType, int number, String measure, int usedFlag) {
         this.id = id;
-    }
-
-    public Food(String name, String date, String security, String foodType, String num) {
         this.name = name;
         this.date = date;
         this.security = security;
         this.foodType = foodType;
-        this.num = num;
+        this.number = number;
+        this.measure = measure;
+        this.usedFlag = usedFlag;
     }
 
-    public Food(String name, String date, String security, String foodType, String num, String mark) {
+    public Food(String name, String date, int security, String foodType, int number, String measure, int usedFlag) {
         this.name = name;
         this.date = date;
         this.security = security;
         this.foodType = foodType;
-        this.num = num;
-        this.mark = mark;
+        this.number = number;
+        this.measure = measure;
+        this.usedFlag = usedFlag;
     }
 
     @Override
@@ -38,16 +42,17 @@ public class Food {
                 ", date='" + date + '\'' +
                 ", security='" + security + '\'' +
                 ", foodType='" + foodType + '\'' +
-                ", num='" + num + '\'' +
-                ", mark='" + mark + '\'' +
+                ", number='" + number + '\'' +
+                ", measure='" + measure + '\'' +
+                ", usedFlag='" + usedFlag + '\'' +
                 '}';
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -67,11 +72,11 @@ public class Food {
         this.date = date;
     }
 
-    public String getSecurity() {
+    public int getSecurity() {
         return security;
     }
 
-    public void setSecurity(String security) {
+    public void setSecurity(int security) {
         this.security = security;
     }
 
@@ -83,19 +88,29 @@ public class Food {
         this.foodType = foodType;
     }
 
-    public String getNum() {
-        return num;
+    public int getNumber() {
+        return number;
     }
 
-    public void setNum(String num) {
-        this.num = num;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public String getMark() {
-        return mark;
+    public String getMeasure() {
+        return measure;
     }
 
-    public void setMark(String mark) {
-        this.mark = mark;
+    public void setMeasure(String measure) {
+        this.measure = measure;
     }
+
+    public int getUsedFlag() {
+        return usedFlag;
+    }
+
+    public void setUsedFlag(int usedFlag) {
+        this.usedFlag = usedFlag;
+    }
+
+
 }
