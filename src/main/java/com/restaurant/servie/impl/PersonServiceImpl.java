@@ -3,6 +3,7 @@ package com.restaurant.servie.impl;
 import com.alibaba.fastjson.JSON;
 import com.restaurant.dao.PersonMapper;
 import com.restaurant.dao.impl.PersonMapperImpl;
+import com.restaurant.entity.OrderedMenu;
 import com.restaurant.entity.Person;
 import com.restaurant.servie.PersonService;
 import com.restaurant.utils.BaseExecution;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.List;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -145,6 +147,31 @@ public class PersonServiceImpl implements PersonService {
 				return new BaseExecution(202, BaseExecution.OK, "密码修改成功");
 			}
 		}
+	}
+
+	@Override
+	public List<OrderedMenu> selectOrderedPublicByCustomer(String account, String type, String useTime) {
+		return null;
+	}
+
+	@Override
+	public List<OrderedMenu> selectOrderedPublicMenus(String type, String useTime, int start, int end) {
+		return null;
+	}
+
+	@Override
+	public List<OrderedMenu> selectOrderedPublicMenuNumbers(String type, String useTime, int start, int end) {
+		return null;
+	}
+
+	@Override
+	public List<OrderedMenu> selectOrderedPrivateByCustomer(String account, String type, String useTime) {
+		return null;
+	}
+
+	@Override
+	public List<OrderedMenu> selectOrderedPrivateMenus(String type, String useTime, int start, int end) {
+		return null;
 	}
 
 
