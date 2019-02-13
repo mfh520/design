@@ -17,7 +17,7 @@ public class PersonController {
 
 
     /**
-     * @author lihaimeng 208/1/14
+     * @author lihaimeng 2018/1/14
      * @param account
      * @param password
      * @return
