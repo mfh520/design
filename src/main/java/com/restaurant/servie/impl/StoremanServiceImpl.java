@@ -2,13 +2,15 @@ package com.restaurant.servie.impl;
 
 import com.restaurant.entity.Food;
 import com.restaurant.servie.StoremanService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class StoremanServiceImpl implements StoremanService {
 	@Override
 	public void insert(Food food) {
-		
+
 	}
 
 	@Override

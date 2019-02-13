@@ -2,9 +2,11 @@ package com.restaurant.servie.impl;
 
 import com.restaurant.entity.Menu;
 import com.restaurant.servie.MenuService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MenuServiceImpl implements MenuService {
 
     /**

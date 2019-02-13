@@ -2,9 +2,11 @@ package com.restaurant.servie.impl;
 
 import com.restaurant.entity.OrderedMenu;
 import com.restaurant.servie.CustomerService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void selectOrderedAsPublic(int menuId, String account, String type, String useTime, int number) {

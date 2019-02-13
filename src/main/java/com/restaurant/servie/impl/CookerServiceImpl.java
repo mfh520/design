@@ -4,9 +4,11 @@ import com.restaurant.entity.Menu;
 import com.restaurant.entity.OrderedMenu;
 import com.restaurant.entity.SortedMenu;
 import com.restaurant.servie.CookerService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CookerServiceImpl implements CookerService {
 	@Override
 	public void addMenu(Menu menu) {

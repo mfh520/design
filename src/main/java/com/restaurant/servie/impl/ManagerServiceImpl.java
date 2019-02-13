@@ -3,9 +3,11 @@ package com.restaurant.servie.impl;
 import com.restaurant.entity.Account;
 import com.restaurant.entity.Expand;
 import com.restaurant.servie.ManagerService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public void insertAccount(Account account) {
