@@ -1,0 +1,54 @@
+-- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+--
+-- Host: 127.0.0.1    Database: restaurant
+-- ------------------------------------------------------
+-- Server version	5.7.19
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `Emp`
+--
+
+DROP TABLE IF EXISTS `Emp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Emp` (
+  `eno` int(11) NOT NULL,
+  `name` varchar(10) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `telephone` varchar(11) NOT NULL,
+  `location` varchar(11) NOT NULL,
+  PRIMARY KEY (`eno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Emp`
+--
+
+LOCK TABLES `Emp` WRITE;
+/*!40000 ALTER TABLE `Emp` DISABLE KEYS */;
+INSERT INTO `Emp` VALUES (1,'Richard','1','11111111111','cooker'),(2,'Tom','2','12312312312','user'),(3,'qqq','123','12112331234','user'),(123,'12','12','12345678911','user'),(1111,'qwe','123123','12312341234','user'),(1212,'21','123','12345678911','user'),(1928,'lizi','123456','12312341234','user'),(11112,'qwe','123123','12312341234','user'),(12123,'请问','123456','11111111111','user'),(12222,'QwQ','123','12345678911','user'),(12344,'12','123','12345678911','user'),(121234,'请问','123456','11111111111','user'),(1211111,'1212','12','12345678911','user'),(1212345,'请问','123456','11111111111','user'),(1221111,'1','1','12345678911','user'),(12111112,'1212','12','12345678911','user'),(12121212,'1','1','11111111111','user');
+/*!40000 ALTER TABLE `Emp` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-02-16 22:27:24
