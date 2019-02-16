@@ -73,15 +73,14 @@ public class PersonServiceImpl implements PersonService {
 	 * @author lihaimeng 2018/2/3
 	 */
 	@Override
-	public BaseExecution getPerson(String account) {
+	public Person getPerson(String account) {
 		if (personMapper.isExists(account) == 0) {
-			return new BaseExecution(202, BaseExecution.OK, "账号不存在");
+			return null;
 		} else {
 			Person person = personMapper.selectPerson(account);
-			System.out.println(JSON.toJSONString(person));
-			BaseExecution baseExecution = new BaseExecution(200, BaseExecution.OK, "");
-			return new BaseExecution(200, BaseExecution.OK, JSON.toJSON(person));
-
+//			System.out.println(JSON.toJSONString(person));
+//			return new BaseExecution(200, BaseExecution.OK, JSON.toJSON(person));
+			return person;
 		}
 	}
 
