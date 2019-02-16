@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <util:properties id="cfg" location="classpath:dbconfig.properties"/>
+    <!-- 利用spring容器管理数据库连接池 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <!-- 必选参数 -->
+        <property name="driverClassName" value="#{cfg.jdbc.driver}"/>
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/demo"/>-->
+        <property name="url" value="#{cfg.jdbc.url}"/>
+        <property name="username" value="#{cfg.jdbc.username}"/>
+        <property name="password" value="#{cfg.jdbc.password}"/>
+    </bean>
+
+
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:com.restaurant.dao/*.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="basePackage" value="cn.lizi.store.mapper"/>
+    </bean>
+
+
+
+</beans>

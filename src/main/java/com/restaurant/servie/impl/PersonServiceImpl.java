@@ -9,8 +9,10 @@ import com.restaurant.servie.PersonService;
 import com.restaurant.utils.BaseExecution;
 import com.sun.xml.internal.rngom.parse.host.Base;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.List;
@@ -18,7 +20,8 @@ import java.util.List;
 @Service
 public class PersonServiceImpl implements PersonService {
 
-	private PersonMapper personMapper = new PersonMapperImpl();
+	@Resource
+	private PersonMapper personMapper;
 
 	private static final String KEY_SHA = "SHA";
 
