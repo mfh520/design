@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.restaurant.dao.FoodMapper">
+
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+    <insert id="insert" parameterType="com.restaurant.entity.Food">
+        insert into
+        tbl_food
+        (name, date, security, food_type, number, measure)
+        values
+        (#{name},  #{date}, #{security}, #{foodType}, #{number}, #{measure})
+    </insert>
+
+    <update id="remove" parameterType="Integer">
+        update
+        tbl_food
+        set
+        delete_flag = 1
+        where
+        id = #{id}
+    </update>
+
+    <update id="used" parameterType="Integer">
+        update
+        tbl_food
+        set
+        used_flag = 1
+        where
+        id = #{id}
+    </update>
+
+    <update id="update" parameterType="com.restaurant.entity.Food">
+        update
+        tbl_food
+        set
+        name = #{name},
+        date = #{date},
+        security = #{security},
+        food_type = #{foodType},
+        number = #{number},
+        measure = #{measure}
+        where
+        id = #{id}
+    </update>
+
+    <select id="select" resultType="com.restaurant.entity.Food">
+        select
+        id, name, date, security, food_type, number, measure
+        from
+        tbl_food
+        where
+        delete_flag != 1
+        and used_flag != 1
+        limit #{start}, #{end}
+    </select>
+
+    <select id="total" resultType="com.restaurant.entity.Food">
+        select
+        id, name, date, security, food_type, number, measure
+        from
+        tbl_food
+        where
+        date between #{startTime} and #{endTime}
+        and delete_flag != 1
+        and used_flag != 1
+        limit #{start}, #{end}
+    </select>
+
+
+</mapper>

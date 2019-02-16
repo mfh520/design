@@ -1,0 +1,73 @@
+<html>
+<body>
+<h2>Hello World!</h2>
+    <form id="form-register" method="post" action="user/test.do">
+        <input id="param"/>
+        <button value="Submit">click</button>
+    </form>
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<!--<script src="jquery/jquery.cookie.js"></script>-->
+<script type="text/javascript">
+    // var SUCCESS = 1
+    $("#form-register").submit(commitForm)
+
+    function commitForm() {
+
+        var param = $("#param").val()
+
+        console.log(param)
+        // js对象,简称JSON
+        var data = {
+            "param": param,
+        }
+
+        console.log(data)
+        // $.post(url, data, success回调函数)
+        var url = "user/test1.do"
+        $.post(url, data, function (baseExecution) {
+            // result.state result.message result.data
+            console.log("服务器请求成功");
+            if (baseExecution.code == 200) {
+                // location.href = "index.html"
+            } else {//ERROR
+                //將錯誤消息顯示到 用戶名邊上
+                var msg = result.message
+                // $("#param").next().html(msg)
+            }
+        })
+
+        // $.ajax({
+        //     type : "POST",
+        //     url : "user/test1.do",
+        //     dataType : "JSON",
+        //     data : {
+        //         param : param
+        //     },
+        //     beforeSend : function() {
+        //
+        //     },
+        //     success : function(data) {
+        //         if (data.status==1) {
+        //             alert("okok");
+        //
+        //             // window.location = "login666.html";
+        //         } else
+        //             alert("erer");
+        //
+        //     },
+        //     error : function(data) {
+        //         alert("erer");
+        //         console.log();
+        //
+        //     },
+        //     complete : function() {
+        //     }
+        // })
+
+        return false
+    }
+
+</script>
+</body>
+</html>
