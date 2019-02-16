@@ -27,8 +27,9 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-        <property name="basePackage" value="cn.lizi.store.mapper"/>
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.restaurant.dao"/>
     </bean>
 
 

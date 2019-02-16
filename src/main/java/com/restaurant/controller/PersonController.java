@@ -1,5 +1,6 @@
 package com.restaurant.controller;
 
+import com.restaurant.entity.Person;
 import com.restaurant.servie.PersonService;
 import com.restaurant.servie.impl.PersonServiceImpl;
 import com.restaurant.utils.BaseExecution;
@@ -16,8 +17,8 @@ import javax.annotation.Resource;
 @RequestMapping("/user")
 public class PersonController {
 
-//    @Resource
-    private PersonService personService = new PersonServiceImpl();
+    @Resource
+    private PersonService personService;
 
 
 	@RequestMapping("/test.do")
@@ -42,14 +43,23 @@ public class PersonController {
      * @param password
      * @return
      */
-    @ResponseBody
-    @RequestMapping(value = "/register.do", method = RequestMethod.POST)
-    public BaseExecution register(String account, String password, String name, String telephone) {
+	@ResponseBody
+	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
+	public BaseExecution register(String account, String password, String name, String telephone) {
 		System.out.println("666");
 		PersonService personService1 = new PersonServiceImpl();
-    	BaseExecution baseExecution = personService1.register(account, password, name, telephone);
-        return baseExecution;
-    }
+		BaseExecution baseExecution = personService1.register(account, password, name, telephone);
+		return baseExecution;
+	}
+
+
+	@ResponseBody
+	@RequestMapping(value = "/testService.do", method = RequestMethod.POST)
+	public BaseExecution testService(String account, String password, String name, String telephone) {
+		System.out.println("service");
+		BaseExecution baseExecution = personService.register(account, password, name, telephone);
+		return baseExecution;
+	}
 
     /**
      * @author lihaimeng 2018/1/14
@@ -64,12 +74,12 @@ public class PersonController {
         return baseExecution;
     }
 
-	@ResponseBody
-	@RequestMapping(value = "/getPerson.do", method = RequestMethod.POST)
-    public BaseExecution getPerson(@RequestParam("account")String account) {
-		BaseExecution baseExecution = personService.getPerson(account);
-		return baseExecution;
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/getPerson.do", method = RequestMethod.POST)
+//    public BaseExecution getPerson(@RequestParam("account")String account) {
+//		BaseExecution baseExecution = personService.getPerson(account);
+//		return baseExecution;
+//	}
 
 	/**
 	 * @author lihaimeng 2018/2/3
@@ -82,6 +92,16 @@ public class PersonController {
 		BaseExecution baseExecution = personService.changePassword(account, oldPassword, newPassword);
 		return baseExecution;
 	}
+
+
+	@ResponseBody
+	@RequestMapping(value = "/getPerson.do", method = RequestMethod.POST)
+	public BaseExecution getPerson(@RequestParam("account") String account) {
+		Person person = personService.getPerson(account);
+		BaseExecution baseExecution = new BaseExecution(200, "ok", person);
+		return baseExecution;
+	}
+
 
 	@ResponseBody
 	@RequestMapping(value = "/forgetPassword.do", method = RequestMethod.POST)

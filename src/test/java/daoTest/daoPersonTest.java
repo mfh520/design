@@ -56,9 +56,11 @@ public class daoPersonTest {
 
     @Test
     public void testGetPerson() {
-        String account = "acca";
-        PersonController personController = new PersonController();
-        BaseExecution result = personController.getPerson(account);
-        System.out.println(JSON.toJSONString(result));
+        String account = "acc";
+//        PersonController personController = new PersonController();
+//        BaseExecution result = personController.getPerson(account);
+        PersonMapper personMapper = new PersonMapperImpl();
+        Person person = personMapper.selectPerson(account);
+        System.out.println(JSON.toJSONString(person));
     }
 }
