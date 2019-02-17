@@ -44,11 +44,12 @@ public class PersonMapperImpl implements PersonMapper {
 
     @Override
     public Person selectPerson(String id) {
-        SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
-        PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
-        Person person = personMapper.selectPerson(id);
-        sqlSession.close();
-        return person;
+//        SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
+//        PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
+//        Person person = personMapper.selectPerson(id);
+//        sqlSession.close();
+//        return person;
+        return null;
     }
 
     @Override

@@ -23,8 +23,4 @@ public interface PersonService {
 	public List<OrderedMenu> selectOrderedPrivateByCustomer(String account, String type, String useTime);
 	public List<OrderedMenu> selectOrderedPrivateMenus(String type, String useTime, int start, int end);
 
-
-
-
-
 }

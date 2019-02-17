@@ -1,5 +1,6 @@
 package com.restaurant.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.restaurant.entity.Person;
 import com.restaurant.servie.PersonService;
 import com.restaurant.servie.impl.PersonServiceImpl;
@@ -46,17 +47,8 @@ public class PersonController {
 	@ResponseBody
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public BaseExecution register(String account, String password, String name, String telephone) {
-		System.out.println("666");
-		PersonService personService1 = new PersonServiceImpl();
-		BaseExecution baseExecution = personService1.register(account, password, name, telephone);
-		return baseExecution;
-	}
-
-
-	@ResponseBody
-	@RequestMapping(value = "/testService.do", method = RequestMethod.POST)
-	public BaseExecution testService(String account, String password, String name, String telephone) {
-		System.out.println("service");
+		Person person = new Person(account, password, name, telephone);
+//		System.out.println(JSON.toJSONString(person));
 		BaseExecution baseExecution = personService.register(account, password, name, telephone);
 		return baseExecution;
 	}
@@ -94,11 +86,14 @@ public class PersonController {
 	}
 
 
-	@ResponseBody
-	@RequestMapping(value = "/getPerson.do", method = RequestMethod.POST)
-	public BaseExecution getPerson(@RequestParam("account") String account) {
-		Person person = personService.getPerson(account);
-		BaseExecution baseExecution = new BaseExecution(200, "ok", person);
+		@ResponseBody
+		@RequestMapping(value = "/getPerson.do", method = RequestMethod.POST)
+		public BaseExecution getPerson(@RequestParam("account") String account) {
+			Person person = personService.getPerson(account);
+			if (person == null) {
+				return  new BaseExecution(200, "ok", "该用户不存在");
+			}
+			BaseExecution baseExecution = new BaseExecution(200, "ok", person);
 		return baseExecution;
 	}
 
@@ -114,9 +109,10 @@ public class PersonController {
 	@ResponseBody
 	@RequestMapping(value = "/updatePerson.do", method = RequestMethod.POST)
 	public BaseExecution updatePerson(@RequestParam("account") String account, @RequestParam("name") String name,
-										@RequestParam("telephone") String telephone, @RequestParam("password") String password) {
+									  @RequestParam("telephone") String telephone, @RequestParam("password") String password) {
 		BaseExecution baseExecution = personService.updatePerson(account, name, telephone, password);
 		return baseExecution;
 	}
+	
 
 }

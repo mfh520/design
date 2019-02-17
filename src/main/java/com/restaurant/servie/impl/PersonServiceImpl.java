@@ -1,15 +1,10 @@
 package com.restaurant.servie.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.restaurant.dao.PersonMapper;
-import com.restaurant.dao.impl.PersonMapperImpl;
 import com.restaurant.entity.OrderedMenu;
 import com.restaurant.entity.Person;
 import com.restaurant.servie.PersonService;
 import com.restaurant.utils.BaseExecution;
-import com.sun.xml.internal.rngom.parse.host.Base;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,15 +24,15 @@ public class PersonServiceImpl implements PersonService {
 	 * @param account
 	 * @param password
 	 * @return
-	 * @author lihaimeng 208/1/14
+	 * @author lihaimeng 2018/1/14
 	 */
 	public BaseExecution register(String account, String password, String name, String telephone) {
 //		PersonMapper personMapper = new PersonMapperImpl();
 		if (account.contains(" ") || password.contains(" ")) {
-			return new BaseExecution(201, BaseExecution.OK, "账号或密码包含空格");
+			return new BaseExecution(200, BaseExecution.OK, "账号或密码包含空格");
 		}
 		if (personMapper.isExists(account) == 1) {
-			return new BaseExecution(212, BaseExecution.OK, "账号已经存在");
+				return new BaseExecution(200, BaseExecution.OK, "账号已经存在");
 		}
 		password = encryption(password);
 		System.out.println(password.length());
@@ -59,11 +54,11 @@ public class PersonServiceImpl implements PersonService {
 		System.out.println(account + " " + password + " " + passFromFB);
 		password = encryption(password);
 		if (personMapper.isExists(account) == 0) {
-			return new BaseExecution(202, BaseExecution.OK, "账号不存在");
+			return new BaseExecution(200, BaseExecution.OK, "账号不存在");
 		} else if (account.equals(account) && password.equals(passFromFB)) {
 			return new BaseExecution(200, BaseExecution.OK, "登录成功");
 		} else {
-			return new BaseExecution(201, BaseExecution.OK, "密码错误");
+			return new BaseExecution(200, BaseExecution.OK, "密码错误");
 		}
 	}
 
@@ -78,8 +73,6 @@ public class PersonServiceImpl implements PersonService {
 			return null;
 		} else {
 			Person person = personMapper.selectPerson(account);
-//			System.out.println(JSON.toJSONString(person));
-//			return new BaseExecution(200, BaseExecution.OK, JSON.toJSON(person));
 			return person;
 		}
 	}
@@ -108,7 +101,7 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public BaseExecution changePassword(String account, String oldPassword, String newPassword) {
 		if (personMapper.isExists(account) == 0) {
-			return new BaseExecution(202, BaseExecution.OK, "账号不存在");
+			return new BaseExecution(200, BaseExecution.OK, "账号不存在");
 		} else {
 			oldPassword = encryption(oldPassword);
 			String passwordFromDB = personMapper.selectPassword(account);
@@ -118,7 +111,7 @@ public class PersonServiceImpl implements PersonService {
 				return new BaseExecution(200, BaseExecution.OK, "密码修改成功");
 			}
 			else {
-				return new BaseExecution(200, BaseExecution.OK, "密码输入错误");
+				return new BaseExecution(200, BaseExecution.OK, "旧密码输入错误");
 			}
 		}
 	}
@@ -139,14 +132,14 @@ public class PersonServiceImpl implements PersonService {
 		} else {
 			Person person = personMapper.selectPerson(account);
 			if (!person.getName().equals(name)) {
-				return new BaseExecution(202, BaseExecution.OK, "输入的基本信息不正确");
+				return new BaseExecution(200, BaseExecution.OK, "输入的基本信息不正确");
 			} else if (!person.getTelephone().equals(telephone)) {
-				return new BaseExecution(202, BaseExecution.OK, "输入的基本信息不正确");
+				return new BaseExecution(200, BaseExecution.OK, "输入的基本信息不正确");
 			} else {
 				password = encryption(password);
 				Person p = new Person(account, password, name, telephone);
 				personMapper.updatePerson(p);
-				return new BaseExecution(202, BaseExecution.OK, "密码修改成功");
+				return new BaseExecution(200, BaseExecution.OK, "基本信息修改成功");
 			}
 		}
 	}

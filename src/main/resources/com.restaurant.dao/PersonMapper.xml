@@ -84,7 +84,7 @@
         person
         set
         password = #{password},
-        name = {name},
+        name = #{name},
         telephone = #{telephone}
         where
         account = #{account}
