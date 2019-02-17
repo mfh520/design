@@ -5,14 +5,14 @@ import com.restaurant.entity.OrderedMenu;
 import com.restaurant.entity.SortedMenu;
 import com.restaurant.servie.CookerService;
 import com.restaurant.utils.BaseExecution;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-@Component
+@Controller
 @RequestMapping("/cooker")
 public class CookerController {
 
