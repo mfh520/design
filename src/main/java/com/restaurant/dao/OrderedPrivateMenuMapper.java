@@ -17,5 +17,7 @@ public interface OrderedPrivateMenuMapper {
 													 @Param("useTime")String useTime);
 	public List<OrderedMenu> selectOrderedPrivateMenus(@Param("type")String type, @Param("useTime")String useTime,
 													   @Param("start") int start, @Param("end") int end);
+	public List<OrderedMenu> selectOrderedPrivateMenuNumbers(@Param("type")String type, @Param("useTime")String useTime,
+															@Param("start") int start, @Param("end") int end);
 
 }

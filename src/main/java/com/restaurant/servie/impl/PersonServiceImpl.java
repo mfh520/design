@@ -1,5 +1,7 @@
 package com.restaurant.servie.impl;
 
+import com.restaurant.dao.OrderedPrivateMenuMapper;
+import com.restaurant.dao.OrderedPublicMenuMapper;
 import com.restaurant.dao.PersonMapper;
 import com.restaurant.entity.OrderedMenu;
 import com.restaurant.entity.Person;
@@ -17,6 +19,10 @@ public class PersonServiceImpl implements PersonService {
 
 	@Resource
 	private PersonMapper personMapper;
+	@Resource
+	private OrderedPublicMenuMapper orderedPublicMenuMapper;
+	@Resource
+	private OrderedPrivateMenuMapper orderedPrivateMenuMapper;
 
 	private static final String KEY_SHA = "SHA";
 
@@ -144,8 +150,16 @@ public class PersonServiceImpl implements PersonService {
 		}
 	}
 
+	/**
+	 * @author lihaimeng 2018/2/17
+	 * @param account
+	 * @param type
+	 * @param useTime
+	 * @return
+	 */
 	@Override
 	public List<OrderedMenu> selectOrderedPublicByCustomer(String account, String type, String useTime) {
+//		orderedPublicMenuMapper.selectOrderedAsPublic()
 		return null;
 	}
 

@@ -21,4 +21,5 @@ public interface OrderedPublicMenuMapper {
 
 	public List<OrderedMenu> selectOrderedPublicMenuNumbers(@Param("type")String type, @Param("useTime")String useTime,
 															@Param("start") int start, @Param("end") int end);
+
 }

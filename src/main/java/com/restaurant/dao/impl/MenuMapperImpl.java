@@ -19,6 +19,15 @@ public class MenuMapperImpl implements MenuMapper {
 	}
 
 	@Override
+	public int isExists(String name) {
+		SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
+		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
+		int result = menuMapper.isExists(name);
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
 	public Menu checkDetail(int id) {
 		SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
 		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
@@ -43,6 +52,15 @@ public class MenuMapperImpl implements MenuMapper {
 		menuMapper.deleteMenu(id);
 		sqlSession.commit();
 		sqlSession.close();
+	}
+
+	@Override
+	public int selectMenuNumber() {
+		SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
+		MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
+		int number = menuMapper.selectMenuNumber();
+		sqlSession.close();
+		return number;
 	}
 
 	@Override

@@ -10,6 +10,15 @@ public class SortedPrivateMenuMapperImpl implements SortedPrivateMenuMapper {
 
 
 	@Override
+	public int getPrivateNumber() {
+		SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
+		SortedPrivateMenuMapper sortedPrivateMenuMapper = sqlSession.getMapper(SortedPrivateMenuMapper.class);
+		int number = sortedPrivateMenuMapper.getPrivateNumber();
+		sqlSession.close();
+		return number;
+	}
+
+	@Override
 	public void selectMenuAsPrivate(int id) {
 		SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
 		SortedPrivateMenuMapper sortedPrivateMenuMapper = sqlSession.getMapper(SortedPrivateMenuMapper.class);

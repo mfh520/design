@@ -47,5 +47,14 @@ public class OrderedPrivateMenuMapperImpl implements OrderedPrivateMenuMapper {
 		return orderedMenus;
 	}
 
+	@Override
+	public List<OrderedMenu> selectOrderedPrivateMenuNumbers(String type, String useTime, int start, int end) {
+		SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
+		OrderedPrivateMenuMapper orderedPrivateMenuMapper = sqlSession.getMapper(OrderedPrivateMenuMapper.class);
+		List<OrderedMenu> orderedMenus = orderedPrivateMenuMapper.selectOrderedPrivateMenuNumbers(type, useTime, start, end);
+		sqlSession.close();
+		return orderedMenus;
+	}
+
 
 }

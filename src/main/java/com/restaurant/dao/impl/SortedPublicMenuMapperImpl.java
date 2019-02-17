@@ -10,6 +10,15 @@ import java.util.List;
 public class SortedPublicMenuMapperImpl implements SortedPublicMenuMapper {
 
 	@Override
+	public int getPublicNumber() {
+		SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
+		SortedPublicMenuMapper sortedPublicMenuMapper = sqlSession.getMapper(SortedPublicMenuMapper.class);
+		int number = sortedPublicMenuMapper.getPublicNumber();
+		sqlSession.close();
+		return number;
+	}
+
+	@Override
 	public void selectMenuAsPublic(int id) {
 		SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession().openSession();
 		SortedPublicMenuMapper sortedPublicMenuMapper = sqlSession.getMapper(SortedPublicMenuMapper.class);

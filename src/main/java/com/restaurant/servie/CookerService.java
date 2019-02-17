@@ -9,16 +9,18 @@ import java.util.List;
 public interface CookerService {
 
 	// menu
-	public void addMenu(Menu menu);
-	public void removeMenu(int id);
+	public int getMenuNumber();
+	public int addMenu(Menu menu);
+	public int removeMenu(int id, String name);
 	public void updateMenu(Menu menu);
-	public void checkDetail(int id);
+	public Menu checkDetail(int id, String name);
 	public List<Menu> selectMenu(int start, int end);
 	public List<Menu> selectMenuByName(String name, int start, int end);
 	public List<Menu> selectMenuBySeason(String season, int start, int end);
 	public List<Menu> selectMenuByType(String type, int start, int end);
 
 	// Sorted
+	public int getPublicNumber();
 	public void selectMenuAsPublic(int id);
 	public void removeMenuPublic(int id);
 	public List<SortedMenu> selectPublicMenus(int start, int end);
@@ -26,6 +28,7 @@ public interface CookerService {
 	public List<SortedMenu> selectPublicMenuByName(String name, int start, int end);
 	public List<SortedMenu> selectPublicMenuByType(String type, int start, int end);
 
+	public int getPrivateNumber();
 	public void selectMenuAsPrivate(int id);
 	public void removeMenuPrivate(int id);
 	public List<SortedMenu> selectPrivateMenus(int start, int end);
@@ -38,9 +41,6 @@ public interface CookerService {
 	public List<OrderedMenu> selectOrderedPrivateMenus(String type, String useTime, int start, int end);
 	public List<OrderedMenu> selectOrderedPublicMenus(String type, String useTime,int start, int end);
 	public List<OrderedMenu> selectOrderedPublicMenuNumbers(String type, String useTime, int start, int end);
-
-
-
-
+	public List<OrderedMenu> selectOrderedPrivateMenuNumbers(String type, String useTime, int start, int end);
 
 }

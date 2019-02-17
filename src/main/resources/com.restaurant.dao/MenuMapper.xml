@@ -19,6 +19,10 @@
         #{season})
     </insert>
 
+    <select id="isExists" parameterType="String" resultType="Integer">
+        select count(1) from tbl_menu where name = #{name} and delete_flag != 1;
+    </select>
+
     <select id="checkDetail" parameterType="Integer" resultType="com.restaurant.entity.Menu">
         select
         id,
@@ -50,6 +54,10 @@
         where
         id = #{id}
     </update>
+
+    <select id="selectMenuNumber" resultType="Integer">
+        select count(name) from tbl_menu where delete_flag != 1
+    </select>
 
     <select id="selectMenu" resultType="com.restaurant.entity.Menu">
         select

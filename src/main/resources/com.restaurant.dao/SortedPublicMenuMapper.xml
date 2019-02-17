@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.restaurant.dao.SortedPublicMenuMapper">
 
+    <select id="getPublicNumber" resultType="Integer">
+        select count(name) from tbl_menu_public where delete_flag != 1
+    </select>
+
     <!--useGeneratedKeys="true" keyProperty="id"-->
     <insert id="selectMenuAsPublic" parameterType="Integer">
         insert into

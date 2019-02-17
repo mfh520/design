@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface SortedPrivateMenuMapper {
 
+	public int getPrivateNumber();
 	public void selectMenuAsPrivate(int id);
 	public void removeMenuPrivate(int id);
 	public List<SortedMenu> selectPrivateMenus(@Param("start") int start, @Param("end") int end);
