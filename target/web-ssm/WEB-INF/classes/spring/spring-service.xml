@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+    <!-- important!!!!! -->
+    <context:component-scan base-package="com.restaurant.*">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--引入文件-->
+    <context:property-placeholder location="classpath:dbconfig.properties"/>
+    <!-- 控制业务逻辑 数据源，事务控制，aop -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!-- 事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 注解的事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--
+    mybatis
+    spring : 1.管理所有组件,mapper
+               service =>dao @Autowired  自动注入mapper
+             2.spring用来管理事务，声明式事务
+    -->
+    <!-- mybatis和spring完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- configLocationFactoryBean -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- 自动扫描mapping.xml文件 -->
+        <!--<property name="mapperLocations" value="classpath:com.restaurant.dao/*.xml"/>-->
+    </bean>
+
+    <!-- 扫描所有的mapper接口 让mapper自动注入 -->
+    <!--<mybatis-spring:scan base-package="com.restaurant.dao"></mybatis-spring:scan>-->
+    
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.restaurant.dao"></property>
+    </bean>
+
+</beans>

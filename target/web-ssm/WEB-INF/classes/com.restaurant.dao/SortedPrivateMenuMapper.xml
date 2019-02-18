@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.restaurant.dao.SortedPrivateMenuMapper">
+
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+    <insert id="selectMenuAsPrivate" parameterType="Integer">
+        insert into
+        tbl_menu_private(
+        menu_id)
+        values (
+        #{menu_id})
+    </insert>
+
+    <update id="removeMenuPrivate" parameterType="Integer">
+        update
+        tbl_menu_private
+        set
+        delete_flag = 1
+        where
+        id = #{id}
+    </update>
+
+    <select id="selectPrivateMenus" resultType="com.restaurant.entity.OrderedMenu">
+        select id, menu_id, name, type, price, season, delete_flag
+        from ( select
+            tbl_menu_private.id, menu_id, name, type, price, season, tbl_menu_private.delete_flag
+            from
+            tbl_menu_private left join tbl_menu
+            on tbl_menu_private.menu_id = tbl_menu.id ) as tbl
+            where delete_flag != 1
+        limit #{start}, #{end}
+    </select>
+
+    <select id="selectPrivateMenuByName" resultType="com.restaurant.entity.OrderedMenu">
+        <bind name="name" value="'%' + _parameter.name + '%'" />
+        select id, menu_id, name, type, price, season, delete_flag
+        from ( select
+            tbl_menu_private.id, menu_id, name, type, price, season, tbl_menu_private.delete_flag
+            from
+            tbl_menu_private left join tbl_menu
+            on tbl_menu_private.menu_id = tbl_menu.id ) as tbl
+        where
+        tbl.name like #{name}
+        and delete_flag != 1
+        limit #{start}, #{end}
+    </select>
+
+    <select id="selectPrivateMenuByType" resultType="com.restaurant.entity.OrderedMenu">
+        <bind name="type" value="'%' + _parameter.type + '%'" />
+        select id, menu_id, name, type, price, season, delete_flag
+            from ( select
+            tbl_menu_private.id, menu_id, name, type, price, season, tbl_menu_private.delete_flag
+            from
+            tbl_menu_private left join tbl_menu
+            on tbl_menu_private.menu_id = tbl_menu.id ) as tbl
+        where
+        tbl.type like #{type}
+        and delete_flag != 1
+        limit #{start}, #{end}
+    </select>
+
+
+    <select id="selectPrivateMenuBySeason" resultType="com.restaurant.entity.OrderedMenu">
+        <bind name="season" value="'%' + _parameter.season + '%'" />
+        select id, menu_id, name, type, price, season, delete_flag
+            from ( select
+            tbl_menu_private.id, menu_id, name, type, price, season, tbl_menu_private.delete_flag
+            from
+            tbl_menu_private left join tbl_menu
+            on tbl_menu_private.menu_id = tbl_menu.id ) as tbl
+        where
+        tbl.season like #{season}
+        and delete_flag != 1
+        limit #{start}, #{end}
+    </select>
+
+</mapper>
