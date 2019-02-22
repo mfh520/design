@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
@@ -27,6 +27,7 @@
     <!--<typeAliases>-->
         <!--&lt;!&ndash; 默认 employee-->
                 <!--alias..-->
+
            <!--&ndash;&gt;-->
         <!--&lt;!&ndash;<typeAlias type="my02.cn.mybatis.bean.Employee" alias="emp"/>&ndash;&gt;-->
         <!--&lt;!&ndash; package 包起别名 &ndash;&gt;-->
